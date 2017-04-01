@@ -6,7 +6,7 @@
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
 # Version: 1.1.1-beta
-# Description: binary.py will convert given IPs into binary IPs
+# Description: This is a program that will convert given IP address into a binary IP address
 ################################################################################################################################################
 
 import sys, re, getopt
