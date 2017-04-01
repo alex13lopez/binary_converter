@@ -5,7 +5,7 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 1.1.1-beta
+# Version: 1.2.0-beta
 # Description: This is a program that will convert given IP address into a binary IP address
 ################################################################################################################################################
 
@@ -72,7 +72,7 @@ if __name__ == "__main__":
     try:
         if check(sys.argv[1]):
             print("IP in binary: "+convert(sys.argv[1]))
-        else:
+        elif sys.argv[1][0] == "-":
             try:
                 opts, args = getopt.getopt(sys.argv[1:], "hl:", ["help", "loop="])
             except getopt.GetoptError:
@@ -85,6 +85,9 @@ if __name__ == "__main__":
                 elif opt in ("-l", "--loop"):
                     loop(int(arg))
                     sys.exit(0)
+        else:
+            print("Parameter Error: Use '-h' or '--help' to see the help")
+            sys.exit(1)
     except IndexError:
         print("Error: No parameters suplied!")
         bhelp()
