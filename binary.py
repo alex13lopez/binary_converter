@@ -69,18 +69,23 @@ def loop(times):
 # This is to make the program importable
 # If it is not the main process (e.g.: Imported), the program will not seek for parameters
 if __name__ == "__main__":
-    if check(sys.argv[1]):
-        print("IP in binary: "+convert(sys.argv[1]))
-    else:
-        try:
-            opts, args = getopt.getopt(sys.argv[1:], "hl:", ["help", "loop="])
-        except getopt.GetoptError:
-            print("Parameter Error: Use '-h' or '--help' to see the help!")
-            sys.exit(1)
-        for opt, arg in opts:
-            if opt in ("-h", "--help"):
-                bhelp()
-                sys.exit(0)
-            elif opt in ("-l", "--loop"):
-                loop(int(arg))
-                sys.exit(0)
+    try:
+        if check(sys.argv[1]):
+            print("IP in binary: "+convert(sys.argv[1]))
+        else:
+            try:
+                opts, args = getopt.getopt(sys.argv[1:], "hl:", ["help", "loop="])
+            except getopt.GetoptError:
+                print("Parameter Error: Use '-h' or '--help' to see the help!")
+                sys.exit(1)
+            for opt, arg in opts:
+                if opt in ("-h", "--help"):
+                    bhelp()
+                    sys.exit(0)
+                elif opt in ("-l", "--loop"):
+                    loop(int(arg))
+                    sys.exit(0)
+    except IndexError:
+        print("Error: No parameters suplied!")
+        bhelp()
+        sys.exit(1)
