@@ -5,7 +5,7 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 1.1-beta
+# Version: 1.1.1-beta
 # Description: binary.py will convert given IPs into binary IPs
 ################################################################################################################################################
 
@@ -14,7 +14,7 @@ import sys, re, getopt
 
 def bhelp():
     """ This function prints the help """
-    print("This program takes up to 2 parameters:")
+    print("Usage: ")
     print("                   <IP>                  You must provide a valid IP with the form of X.X.X.X")
     print("                   -l --loop <times>     Indicate how many <times> program will -(l)oop asking you IPs to convert")
     print("                   -h --help             Shows this help")
@@ -32,23 +32,26 @@ def check(ip):
 
 
 def convert(ip):
-    """ This function makes all the magic of converting the IP into bynary """
-    result = []
-    for group in ip.split('.'):
-        # 8 = 128 64 32 16 8 4 2 1
-        group_result = []
-        number = 128
-        for i in range(8):
-            group = int(group)
-            if group >= number:
-                group_result.append('1')
-                group = group-number
-            else:
-                group_result.append('0')
-            number = number/2
-        group_result = ''.join(group_result)
-        result.append(group_result)
-    return '.'.join(result)
+    """ This function does all the magic of converting the given IP address into a bynary IP address"""
+    if check(ip):
+        result = []
+        for group in ip.split('.'):
+            # 8 = 128 64 32 16 8 4 2 1
+            group_result = []
+            number = 128
+            for i in range(8):
+                group = int(group)
+                if group >= number:
+                    group_result.append('1')
+                    group = group-number
+                else:
+                    group_result.append('0')
+                number = number/2
+            group_result = ''.join(group_result)
+            result.append(group_result)
+        return '.'.join(result)
+    else:
+        return "That is not a valid IP address!!!"
 
 
 def loop(times):
@@ -63,18 +66,21 @@ def loop(times):
         sys.exit(0)
 
 
-if check(sys.argv[1]):
-    print("IP in binary: "+convert(sys.argv[1]))
-else:
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], "hl:", ["help", "loop="])
-    except getopt.GetoptError:
-        print("Parameter Error: Use '-h' or '--help' to see the help!")
-        sys.exit(1)
-    for opt, arg in opts:
-        if opt in ("-h", "--help"):
-            bhelp()
-            sys.exit(0)
-        elif opt in ("-l", "--loop"):
-            loop(int(arg))
-            sys.exit(0)
+# This is to make the program importable
+# If it is not the main process (e.g.: Imported), the program will not seek for parameters
+if __name__ == "__main__":
+    if check(sys.argv[1]):
+        print("IP in binary: "+convert(sys.argv[1]))
+    else:
+        try:
+            opts, args = getopt.getopt(sys.argv[1:], "hl:", ["help", "loop="])
+        except getopt.GetoptError:
+            print("Parameter Error: Use '-h' or '--help' to see the help!")
+            sys.exit(1)
+        for opt, arg in opts:
+            if opt in ("-h", "--help"):
+                bhelp()
+                sys.exit(0)
+            elif opt in ("-l", "--loop"):
+                loop(int(arg))
+                sys.exit(0)
