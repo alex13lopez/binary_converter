@@ -5,7 +5,7 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 1.2.0-beta
+# Version: 1.2.1-beta
 # Description: This is a program that will convert given IP address into a binary IP address
 ################################################################################################################################################
 
@@ -15,9 +15,9 @@ import sys, re, getopt
 def bhelp():
     """ This function prints the help """
     print("Usage: ")
-    print("                   <IP>                  You must provide a valid IP with the form of X.X.X.X")
-    print("                   -l --loop <times>     Indicate how many <times> program will -(l)oop asking you IPs to convert")
-    print("                   -h --help             Shows this help")
+    print("               <IP>                  You must provide a valid IP with the form of X.X.X.X")
+    print("               -l --loop <times>     Indicate how many <times> program will -(l)oop asking you IPs to convert")
+    print("               -h --help             Shows this help")
 
 
 def check(ip):
@@ -36,9 +36,9 @@ def convert(ip):
     if check(ip):
         result = []
         for group in ip.split('.'):
-            # 8 = 128 64 32 16 8 4 2 1
             group_result = []
             number = 128
+            # 8 = 128 64 32 16 8 4 2 1
             for i in range(8):
                 group = int(group)
                 if group >= number:
@@ -66,8 +66,7 @@ def loop(times):
         sys.exit(0)
 
 
-# This is to make the program importable
-# If it is not the main process (e.g.: Imported), the program will not seek for parameters
+# If it is not the main process (e.g.: imported), the program will not seek for parameters
 if __name__ == "__main__":
     try:
         if check(sys.argv[1]):
