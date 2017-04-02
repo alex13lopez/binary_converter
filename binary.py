@@ -5,8 +5,8 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 1.2.1-beta
-# Description: This is a program that will convert given IP address into a binary IP address
+# Version: 1.3.0-stable
+# Description: This is a program that will convert given IP address or a number into its binary representation
 ################################################################################################################################################
 
 import sys, re, getopt
@@ -15,8 +15,8 @@ import sys, re, getopt
 def bhelp():
     """ This function prints the help """
     print("Usage: ")
-    print("               <IP>                  You must provide a valid IP with the form of X.X.X.X")
-    print("               -l --loop <times>     Indicate how many <times> program will -(l)oop asking you IPs to convert")
+    print("               <IP> or <number>      You must provide a valid IP with the form of X.X.X.X or a number to show the binary representation")
+    print("               -l --loop <times>     Indicate how many <times> program will -(l)oop asking you IPs/numbers to convert")
     print("               -h --help             Shows this help")
 
 
@@ -33,6 +33,8 @@ def check(ip):
 
 def convert(ip):
     """ This function does all the magic of converting the given IP address into a bynary IP address"""
+    # If you wonder why I do not use bin(ip) when it's an IP it's because bin() does not return in 8 bit format, and that makes it pretty ugly
+    # For instance, 192.168.12.14 will be like: 11000000.10101000.1100.1110
     if check(ip):
         result = []
         for group in ip.split('.'):
@@ -50,16 +52,18 @@ def convert(ip):
             group_result = ''.join(group_result)
             result.append(group_result)
         return '.'.join(result)
+    elif int(ip):
+        return bin(int(ip))[2:]
     else:
-        return "That is not a valid IP address!!!"
+        return "That is not a valid IP address nor a number!!!"
 
 
 def loop(times):
     """ This function loops to enter several IPs """
     try:
         for i in range(times):
-            ip = input("Give me an IP: ")
-            print("IP in binary: "+convert(ip))
+            ip = input("Give me an IP or a number: ")
+            print("Binary representation: "+convert(ip))
             print("")
     except KeyboardInterrupt:
         print("\nForced exit with Ctrl-C by user")
@@ -71,6 +75,8 @@ if __name__ == "__main__":
     try:
         if check(sys.argv[1]):
             print("IP in binary: "+convert(sys.argv[1]))
+        elif int(ip):
+            print("Number in binary: "+convert(sys.argv[1]))
         elif sys.argv[1][0] == "-":
             try:
                 opts, args = getopt.getopt(sys.argv[1:], "hl:", ["help", "loop="])
