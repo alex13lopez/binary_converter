@@ -1,7 +1,6 @@
 # Font colors:
 class fcolors:
-    PINK = '\033[95m'
-    BLUE = '\033[96m'
+    CYAN = '\033[96m'
     GREY = '\033[94m'
     GREEN = '\033[92m'
     YELLOW = '\033[93m'

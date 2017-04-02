@@ -2,7 +2,7 @@
 
 **ShortName:** binary
 
-**Version:** Ver2.0-aplha
+**Version:** Ver2.0-stable
 
 **Author:** Aren GamerZ
 

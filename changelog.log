@@ -1,7 +1,11 @@
-##### Changelog Ver2.0-aplha ######
+##### Changelog Ver2.0-stable ######
 
 1. Fixed parameter being a string bug, now parameters work like a charm.
 
 2. Minor description, and comment changres.
 
 3. Now the program also accepts numbers and not only IPs
+
+What's new:
+
+4. Now the program it's more friendly because I added colors

@@ -5,7 +5,7 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 2.0-alpha
+# Version: 2.0-stable
 # Description: This is a program that will convert given IP address or a number into its binary representation
 ################################################################################################################################################
 
@@ -15,7 +15,7 @@ from extra_modules import colors as c
 
 def bhelp():
     """ This function prints the help """
-    print("Usage: ")
+    print("      Usage: ")
     print("               <IP> or <number>      You must provide a valid IP with the form of X.X.X.X or a number to show the binary representation")
     print("               -l --loop <times>     Indicate how many <times> program will -(l)oop asking you IPs/numbers to convert")
     print("               -h --help             Shows this help")
@@ -58,18 +58,19 @@ def convert(ip):
             if int(ip):
                 return bin(int(ip))[2:]
         except ValueError:
-            return "That is not a valid IP address nor a number!!!"
+            return c.fcolors.RED+"That is not a valid IP address nor a number!!!"
 
 
 def loop(times):
     """ This function loops to enter several IPs """
     try:
         for i in range(times):
-            ip = input("Give me an IP or a number: ")
-            print("Binary representation: "+convert(ip))
+            ip = input(c.fcolors.GREY+"IP or number: "+c.fcolors.YELLOW)
+            print(c.fcolors.GREY+"Binary representation: "+c.fcolors.YELLOW+convert(ip)+c.fcolors.RESET)
             print("")
     except KeyboardInterrupt:
-        print("\nForced exit with 'Ctrl-C' by user")
+        print("")
+        print(c.fcolors.RED+"\nAborted by user"+c.fcolors.RESET)
         sys.exit(0)
 
 
@@ -78,19 +79,19 @@ if __name__ == "__main__":
     try:
         if sys.argv[1][0] != "-":
             if check(sys.argv[1]):
-                print("IP in binary: "+convert(sys.argv[1]))
+                print(c.fcolors.GREY+"IP in binary: "+c.fcolors.YELLOW+convert(sys.argv[1])+c.fcolors.RESET)
             else:
                 try:
                     int(sys.argv[1])
-                    print("Number in binary: "+convert(sys.argv[1]))
+                    print(c.fcolors.GREY+"Number in binary: "+c.fcolors.YELLOW+convert(sys.argv[1])+c.fcolors.RESET)
                 except ValueError:
-                    print("Error: Not a valid number nor IP!")
+                    print(c.fcolors.RED+"Error: Not a valid number nor IP!"+c.fcolors.RESET)
                     sys.exit(1)
         elif sys.argv[1][0] == "-":
             try:
                 opts, args = getopt.getopt(sys.argv[1:], "hl:", ["help", "loop="])
             except getopt.GetoptError:
-                print("Parameter Error: Use '-h' or '--help' to see the help!")
+                print(c.fcolors.RED+"Parameter Error: Use '-h' or '--help' to see the help!"+c.fcolors.RESET)
                 sys.exit(1)
             for opt, arg in opts:
                 if opt in ("-h", "--help"):
@@ -100,9 +101,9 @@ if __name__ == "__main__":
                     loop(int(arg))
                     sys.exit(0)
         else:
-            print("Parameter Error: Use '-h' or '--help' to see the help")
+            print(c.fcolors.RED+"Parameter Error: Use '-h' or '--help' to see the help"+c.fcolors.RESET)
             sys.exit(1)
     except IndexError:
-        print("Error: No parameters suplied!")
+        print(c.fcolors.RED+"Error: No parameters suplied!"+c.fcolors.RESET)
         bhelp()
         sys.exit(1)
