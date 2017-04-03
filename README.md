@@ -2,7 +2,7 @@
 
 **ShortName:** binary
 
-**Version:** Ver2.0-stable
+**Version:** Ver2.1-stable
 
 **Author:** Aren GamerZ
 

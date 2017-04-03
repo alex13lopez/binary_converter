@@ -5,7 +5,7 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 2.0-stable
+# Version: 2.1-stable
 # Description: This is a program that will convert given IP address or a number into its binary representation
 ################################################################################################################################################
 
@@ -34,10 +34,9 @@ def check(ip):
 
 def convert(ip):
     """ This function does all the magic of converting the given IP address into a bynary IP address"""
-    # If you wonder why I do not use bin(ip) when it's an IP it's because bin() does not return the result in 8 bit format, and that makes it look pretty ugly
-    # For instance, 192.168.12.14 will be like: 11000000.10101000.1100.1110
+    # If you wonder why I do not use bin(ip) it's because bin() does not return the result in 8 bit format, and that makes it look pretty ugly
+    result = []
     if check(ip):
-        result = []
         for group in ip.split('.'):
             group_result = []
             number = 128
@@ -56,7 +55,16 @@ def convert(ip):
     else:
         try:
             if int(ip):
-                return bin(int(ip))[2:]
+                number = 128
+                for i in range(8):
+                    ip = int(ip)
+                    if ip >= number:
+                        result.append('1')
+                        ip = ip - number
+                    else:
+                        result.append('0')
+                    number = number/2
+                return ''.join(result)
         except ValueError:
             return c.fcolors.RED+"That is not a valid IP address nor a number!!!"
 
