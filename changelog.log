@@ -1,4 +1,4 @@
-##### Changelog Ver2.1-stable ######
+##### Changelog 3.0-alpha/unstable ######
 
 1. Fixed parameter being a string bug, now parameters work like a charm.
 
@@ -7,7 +7,5 @@
 3. Now the program also accepts numbers and not only IPs
 
 4. Now the program it's more friendly because colors were added
-
-What's new:
 
 5. Now numbers are represented in 8-bit format too

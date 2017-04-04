@@ -5,7 +5,7 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 2.1-stable
+# Version: 3.0-alpha/unstable
 # Description: This is a program that will convert given IP address or a number into its binary representation
 ################################################################################################################################################
 
@@ -15,6 +15,7 @@ from extra_modules import colors as c
 
 def bhelp():
     """ This function prints the help """
+
     print("      Usage: ")
     print("               <IP> or <number>      You must provide a valid IP with the form of X.X.X.X or a number to show the binary representation")
     print("               -l --loop <times>     Indicate how many <times> program will -(l)oop asking you IPs/numbers to convert")
@@ -23,6 +24,7 @@ def bhelp():
 
 def check(ip):
     """ This function checks whether a given IP is valid or not """
+
     patt = re.compile("^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$")
     if re.match(patt, ip):
         # In python a '1' means True
@@ -32,8 +34,12 @@ def check(ip):
         return 0
 
 
-def convert(ip):
-    """ This function does all the magic of converting the given IP address into a bynary IP address"""
+def convert(ip, nformat="decimal"):
+    """ This function does all the magic of converting the given IP address into a bynary IP address
+        Arguments:
+            ip = Originally the IP passed to the function, now it can be a numbrer too
+            nformat = The format of the number given: 'decimal' or 'binary'"""
+
     # If you wonder why I do not use bin(ip) it's because bin() does not return the result in 8 bit format, and that makes it look pretty ugly
     result = []
     if check(ip):
@@ -69,12 +75,19 @@ def convert(ip):
             return c.fcolors.RED+"That is not a valid IP address nor a number!!!"
 
 
-def loop(times):
-    """ This function loops to enter several IPs """
+def loop(times, nformat="decimal"):
+    """ This function loops to enter several IPs
+        Arguments:
+            times = The number of times program will loop
+            nformat = The format of the number given: 'decimal' or 'binary'"""
+
     try:
         for i in range(times):
             ip = input(c.fcolors.GREY+"IP or number: "+c.fcolors.YELLOW)
-            print(c.fcolors.GREY+"Binary representation: "+c.fcolors.YELLOW+convert(ip)+c.fcolors.RESET)
+            if nformat == "decimal":
+                print(c.fcolors.GREY+"Binary representation: "+c.fcolors.YELLOW+convert(ip)+c.fcolors.RESET)
+            elif nformat == "binary":
+                print(c.fcolors.GREY+"Decimal representation: "+c.fcolors.YELLOW+convert(ip, "binary"))
             print("")
     except KeyboardInterrupt:
         print("")
@@ -84,34 +97,4 @@ def loop(times):
 
 # If it is not the main process (e.g.: imported), the program will not seek for parameters
 if __name__ == "__main__":
-    try:
-        if sys.argv[1][0] != "-":
-            if check(sys.argv[1]):
-                print(c.fcolors.GREY+"IP in binary: "+c.fcolors.YELLOW+convert(sys.argv[1])+c.fcolors.RESET)
-            else:
-                try:
-                    int(sys.argv[1])
-                    print(c.fcolors.GREY+"Number in binary: "+c.fcolors.YELLOW+convert(sys.argv[1])+c.fcolors.RESET)
-                except ValueError:
-                    print(c.fcolors.RED+"Error: Not a valid number nor IP!"+c.fcolors.RESET)
-                    sys.exit(1)
-        elif sys.argv[1][0] == "-":
-            try:
-                opts, args = getopt.getopt(sys.argv[1:], "hl:", ["help", "loop="])
-            except getopt.GetoptError:
-                print(c.fcolors.RED+"Parameter Error: Use '-h' or '--help' to see the help!"+c.fcolors.RESET)
-                sys.exit(1)
-            for opt, arg in opts:
-                if opt in ("-h", "--help"):
-                    bhelp()
-                    sys.exit(0)
-                elif opt in ("-l", "--loop"):
-                    loop(int(arg))
-                    sys.exit(0)
-        else:
-            print(c.fcolors.RED+"Parameter Error: Use '-h' or '--help' to see the help"+c.fcolors.RESET)
-            sys.exit(1)
-    except IndexError:
-        print(c.fcolors.RED+"Error: No parameters suplied!"+c.fcolors.RESET)
-        bhelp()
-        sys.exit(1)
+    pass
