@@ -7,9 +7,10 @@
 # Email: arendevel@gmail.com
 # Version: 3.0-alpha/unstable
 # Description: This is a program that will convert given IP address or a number into its binary representation
+# License GNU GPL
 ################################################################################################################################################
 
-import sys, re, getopt
+import sys, re, argparse
 from extra_modules import colors as c
 
 
