@@ -1,6 +1,4 @@
-**FullName:**  binary_converter
-
-**ShortName:** binary
+**Name:**  binary_converter
 
 **Version:** 3.1-beta
 
