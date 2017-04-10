@@ -1,11 +1,17 @@
-##### Changelog 3.0-alpha/unstable ######
+##### Changelog 3.1-beta ######
 
 1. Fixed parameter being a string bug, now parameters work like a charm.
 
-2. Minor description, and comment changres.
+2. Minor description, and comment changes.
 
 3. Now the program also accepts numbers and not only IPs
 
 4. Now the program it's more friendly because colors were added
 
 5. Now numbers are represented in 8-bit format too
+
+What's new:
+
+6. Now reverse conversion is possible (from binary to decimal)
+
+7. Binary.py has been renamed to modules/bin_converter to make it a separated module

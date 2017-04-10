@@ -5,7 +5,7 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 3.0-alpha/unstable
+# Version: 3.1-beta
 # Description: This is a program that will convert given IP address or a number into its binary representation and viceversa
 # License GNU GPL
 ################################################################################################################################################
@@ -21,7 +21,7 @@ if __name__ != "__main__":
 else:
     parser = argparse.ArgumentParser(description="This is a program that will convert given IP address or a number into its binary representation and viceversa")
     conflict = parser.add_mutually_exclusive_group()
-    conflict.add_argument("IP", help="IP/number to convert", nargs='?')
+    conflict.add_argument("IP", help="IP/number to convert", type=str, nargs='?')
     parser.add_argument("-b", "--binary", action="store_true", help="Flag to specify binary format")
     conflict.add_argument("-l", "--loop", dest="times", type=int, help="(-l)oops <TIMES> times")
     args = parser.parse_args()
@@ -33,4 +33,4 @@ else:
     elif args.times:
         converter.loop(args.times)
     else:
-        print(c.fcolors.GREY+"Binary representation: "+converter.convert(args.IP)+c.fcolors.RESET)
+        print(c.fcolors.GREY+"Binary representation: "+c.fcolors.YELLOW+converter.convert(args.IP)+c.fcolors.RESET)
