@@ -5,7 +5,7 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 3.1-beta
+# Version: 3.1.1-beta
 # Description: This is a program that will convert given IP address or a number into its binary representation and viceversa
 # License GNU GPL
 ################################################################################################################################################
@@ -26,11 +26,16 @@ else:
     conflict.add_argument("-l", "--loop", dest="times", type=int, help="(-l)oops <TIMES> times")
     args = parser.parse_args()
 
-    if args.binary and not args.times:
-        print(c.fcolors.GREY+"Decimal representation: "+c.fcolors.YELLOW+converter.convert(args.IP, "binary")+c.fcolors.RESET)
-    elif args.binary and args.times:
-        converter.loop(args.times, "binary")
-    elif args.times:
-        converter.loop(args.times)
+    if args.IP:
+        if args.binary and not args.times:
+            print(c.fcolors.GREY+"Decimal representation: "+c.fcolors.YELLOW+converter.convert(args.IP, "binary")+c.fcolors.RESET)
+        else:
+            print(c.fcolors.GREY+"Binary representation: "+c.fcolors.YELLOW+converter.convert(args.IP)+c.fcolors.RESET)
     else:
-        print(c.fcolors.GREY+"Binary representation: "+c.fcolors.YELLOW+converter.convert(args.IP)+c.fcolors.RESET)
+        if args.binary and args.times:
+            converter.loop(args.times, "binary")
+        elif args.times:
+            converter.loop(args.times)
+        else:
+            print(c.fcolors.RED+"Expected a second argument!!!")
+            exit(1)
