@@ -1,16 +1,7 @@
 #!/usr/bin/env python3
 
-import colors as c
 import sys, re
-
-
-def bhelp():
-    """ This function prints the help """
-
-    print("      Usage: ")
-    print("               <IP> or <number>      You must provide a valid IP with the form of X.X.X.X or a number to show the binary representation")
-    print("               -l --loop <times>     Indicate how many <times> program will -(l)oop asking you IPs/numbers to convert")
-    print("               -h --help             Shows this help")
+from . import colors as c
 
 
 def check(ip):
