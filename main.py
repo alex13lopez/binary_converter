@@ -7,7 +7,8 @@
 # Email: arendevel@gmail.com
 # Version: 3.1.1-beta
 # Description: This is a program that will convert given IP address or a number into its binary representation and viceversa
-# License GNU GPL
+# License GNU GPL, check out the full notice in LICENSE file
+# Copyright (C) 2017 ArenGamerZ
 ################################################################################################################################################
 
 import argparse
