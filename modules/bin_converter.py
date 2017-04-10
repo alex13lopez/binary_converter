@@ -1,17 +1,7 @@
 #!/usr/bin/env python3
 
-################################################################################################################################################
-# ShortName: binary.py
-# FullName: binary_converter.py
-# Author: ArenGamerZ
-# Email: arendevel@gmail.com
-# Version: 3.0-alpha/unstable
-# Description: This is a program that will convert given IP address or a number into its binary representation
-# License GNU GPL
-################################################################################################################################################
-
-import sys, re, argparse
-from extra_modules import colors as c
+import colors as c
+import sys, re
 
 
 def bhelp():
@@ -98,4 +88,5 @@ def loop(times, nformat="decimal"):
 
 # If it is not the main process (e.g.: imported), the program will not seek for parameters
 if __name__ == "__main__":
-    pass
+    print(fcolors.RED+"Error: This module is not meant to be excecuted!!!"+fcolors.RESET)
+    exit(1)
