@@ -69,28 +69,6 @@ def convert(ip, format="decimal"):
                 return c.fcolors.RED+"That is not a valid IP address nor a number!!!"
 
 
-
-
-def loop(times, format="decimal"):
-    """ This function loops to enter several IPs
-        Arguments:
-            times = The number of times program will loop
-            format = The format of the number given: 'decimal' or 'binary'"""
-
-    try:
-        for i in range(times):
-            ip = input(c.fcolors.GREY+"IP or number: "+c.fcolors.YELLOW)
-            if format == "decimal":
-                print(c.fcolors.GREY+"Binary representation: "+c.fcolors.YELLOW+convert(ip)+c.fcolors.RESET)
-            elif format == "binary":
-                print(c.fcolors.GREY+"Decimal representation: "+c.fcolors.YELLOW+convert(ip, "binary"))
-            print("")
-    except KeyboardInterrupt:
-        print("")
-        print(c.fcolors.RED+"\nAborted by user"+c.fcolors.RESET)
-        sys.exit(0)
-
-
 # If it is not the main process (e.g.: imported), the program will not seek for parameters
 if __name__ == "__main__":
     print(fcolors.RED+"Error: This module is not meant to be excecuted!!!"+fcolors.RESET)

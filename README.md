@@ -1,6 +1,6 @@
 **Name:**  binary_converter
 
-**Version:** 3.1.2-beta
+**Version:** 3.2.0-beta
 
 **Author:** Aren GamerZ
 

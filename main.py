@@ -5,7 +5,7 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 3.1.2-beta
+# Version: 3.2.0-beta
 # Description: This is a program that will convert given IP address or a number into its binary representation and viceversa
 # License GNU GPL, check out the full notice in LICENSE file
 # Copyright (C) 2017 ArenGamerZ
@@ -16,8 +16,28 @@ from modules import colors as c
 from modules import bin_converter as converter
 
 
+def loop(times, format="decimal"):
+    """ This function loops to enter several IPs
+        Arguments:
+            times = The number of times program will loop
+            format = The format of the number given: 'decimal' or 'binary'"""
+
+    try:
+        for i in range(times):
+            ip = input(c.fcolors.GREY+"IP or number: "+c.fcolors.YELLOW)
+            if format == "decimal":
+                print(c.fcolors.GREY+"Binary representation: "+c.fcolors.YELLOW+converter.convert(ip)+c.fcolors.RESET)
+            elif format == "binary":
+                print(c.fcolors.GREY+"Decimal representation: "+c.fcolors.YELLOW+converter.convert(ip, "binary"))
+            print("")
+    except KeyboardInterrupt:
+        print("")
+        print(c.fcolors.RED+"\nAborted by user"+c.fcolors.RESET)
+        sys.exit(0)
+
+
 if __name__ != "__main__":
-    print(c.fcolors.RED+"This module is not meant to be imported!!!")
+    print(c.fcolors.RED+"This module is not meant to be imported!!!"+c.fcolors.RESET)
     exit(1)
 else:
     parser = argparse.ArgumentParser(description="This is a program that will convert given IP address or a number into its binary representation and viceversa")
@@ -35,9 +55,9 @@ else:
                     print(c.fcolors.GREY+"Binary representation: "+c.fcolors.YELLOW+converter.convert(args.IP)+c.fcolors.RESET)
             else:
                 if args.binary and args.times:
-                    converter.loop(args.times, "binary")
+                    loop(args.times, "binary")
                 elif args.times:
-                    converter.loop(args.times)
+                    loop(args.times)
                 else:
                     print(c.fcolors.RED+"'-b', '--binary' It's a flag, it does nothing itself"+c.fcolors.RESET)
     except IndexError:
