@@ -5,7 +5,7 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 3.2.0-beta
+# Version: 3.2.1-beta
 # Description: This is a program that will convert given IP address or a number into its binary representation and viceversa
 # License GNU GPL, check out the full notice in LICENSE file
 # Copyright (C) 2017 ArenGamerZ
@@ -38,7 +38,6 @@ def loop(times, format="decimal"):
 
 if __name__ != "__main__":
     print(c.fcolors.RED+"This module is not meant to be imported!!!"+c.fcolors.RESET)
-    exit(1)
 else:
     parser = argparse.ArgumentParser(description="This is a program that will convert given IP address or a number into its binary representation and viceversa")
     conflict = parser.add_mutually_exclusive_group()
@@ -62,4 +61,5 @@ else:
                     print(c.fcolors.RED+"'-b', '--binary' It's a flag, it does nothing itself"+c.fcolors.RESET)
     except IndexError:
         print(c.fcolors.RED+"No arguments given! Use '-h' to see the help"+c.fcolors.RESET)
-        exit(1)
+    except ValueError:
+        print(c.fcolors.RED+"That was not a valid IP Address nor a number!")

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
+
+# This is a library from my other project binary_converter, see full project here: <url>
 # Copyright (C) 2017 ArenGamerZ
 
 import sys, re
-from . import colors as c
-
 
 def check(ip):
     """ This function checks whether a given IP is valid or not """
@@ -43,30 +43,24 @@ def convert(ip, format="decimal"):
                 result.append(group_result)
             return '.'.join(result)
         else:
-            try:
-                if int(ip):
-                    number = 128
-                    for i in range(8):
-                        ip = int(ip)
-                        if ip >= number:
-                            result.append('1')
-                            ip = ip - number
-                        else:
-                            result.append('0')
-                        number = number/2
-                    return ''.join(result)
-            except ValueError:
-                return c.fcolors.RED+"That is not a valid IP address nor a number!!!"
+            if int(ip):
+                number = 128
+                for i in range(8):
+                    ip = int(ip)
+                    if ip >= number:
+                        result.append('1')
+                        ip = ip - number
+                    else:
+                        result.append('0')
+                    number = number/2
+                return ''.join(result)
     elif format == "binary":
         if check(ip):
             for group in ip.split('.'):
                 result.append(str(int(group, 2)))
             return '.'.join(result)
         else:
-            try:
-                return str(int(ip, 2))
-            except ValueError:
-                return c.fcolors.RED+"That is not a valid IP address nor a number!!!"
+            return str(int(ip, 2))
 
 
 # If it is not the main process (e.g.: imported), the program will not seek for parameters
