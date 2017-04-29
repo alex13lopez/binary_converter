@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-# This is a library from my other project binary_converter, see full project here: <url>
 # Copyright (C) 2017 ArenGamerZ
 
 import sys, re
@@ -28,6 +27,8 @@ def convert(ip, format="decimal"):
     if format == "decimal":
         if check(ip):
             for group in ip.split('.'):
+                if int(group) > 255:
+                    raise ValueError
                 group_result = []
                 number = 128
                 # 8 = 128 64 32 16 8 4 2 1

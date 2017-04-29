@@ -5,7 +5,7 @@
 # FullName: binary_converter.py
 # Author: ArenGamerZ
 # Email: arendevel@gmail.com
-# Version: 3.2.1-beta
+# Version: 3.2.2-stable
 # Description: This is a program that will convert given IP address or a number into its binary representation and viceversa
 # License GNU GPL, check out the full notice in LICENSE file
 # Copyright (C) 2017 ArenGamerZ

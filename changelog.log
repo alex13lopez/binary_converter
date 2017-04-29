@@ -14,6 +14,8 @@
 
 7. Binary.py has been renamed to modules/bin_converter to make it a separated module
 
+8. Loop interface separated from bin_converter module.
+
 What's new:
 
-8. Loop interface separated from bin_converter module.
+9. Improved error catching
